@@ -4,6 +4,11 @@ const app = express();
 const port = 3000;
 const goodsRouter = require('./routes/goods.js')
 
+
+const connect = require("./schemas");
+connect();
+
+
 // body-parser-Middleware를 쓰기위한 문법이다.
 app.use(express.json());
 
@@ -38,8 +43,8 @@ app.get("/:id", (req, res) => {
 //   res.send('Hello World!');
 // });
 
-// // localhost:3000/api => goodsRouter
-// app.use('/api', goodsRouter) // 배열로도 사용가능 ex) [goodsRouter, userRouter]
+// localhost:3000/api => goodsRouter
+app.use('/api', goodsRouter) // 배열로도 사용가능 ex) [goodsRouter, userRouter]
 
 app.listen(port, () => {
   console.log(port, '포트로 서버가 열렸어요!');
